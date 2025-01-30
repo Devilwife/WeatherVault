@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import { Dayjs } from 'dayjs';
 dotenv.config();
+console.log (process.env.API_KEY)
 // TODO: Define an interface for the Coordinates object
 
 // TODO: Define a class for the Weather object
@@ -116,6 +117,7 @@ class WeatherService {
   }
 
   private async fetchAndDestructureLocationData(): Promise<Coordinates> {
+    
     const query = this.buildGeocodeQuery();
     console.log (query)
     const locationData = await this.fetchLocationData(query);
