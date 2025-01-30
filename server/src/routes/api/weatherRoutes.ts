@@ -5,13 +5,16 @@ const router = Router();
 
 
 // Import services
-import HistoryService from '../../service/historyService';
-import WeatherService from '../../service/weatherService';
+// import HistoryService from '../../service/historyService.js';
+import WeatherService from '../../service/weatherService.js';
+// import { log } from 'console';
 
 // POST: Retrieve weather data for a city and save it to search history
-router.post('/weather', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response) => {
+  console.log(req.body);
+  
    // Extract city name from request body
-  const { city } = req.body;
+  const city  = req.body.cityName;
 
   // Validate that a city is provided
   if (!city || typeof city !== 'string') {
@@ -23,7 +26,7 @@ router.post('/weather', async (req: Request, res: Response) => {
 const weatherData = await WeatherService.getWeatherForCity(city);
 
     // Save the city to search history using HistoryService
-    await HistoryService.addCity(city);
+    // await HistoryService.addCity(city);
 
     // Respond with the weather data
     return res.status(200).json({
@@ -44,44 +47,44 @@ const weatherData = await WeatherService.getWeatherForCity(city);
 });
 
 // GET: Retrieve search history
-router.get('/history', async (_: Request, res: Response) => {
-  try {
-    // Get search history using HistoryService
-    const history = await HistoryService.getCities();
+// router.get('/history', async (_: Request, res: Response) => {
+//   try {
+//     // Get search history using HistoryService
+//     const history = await HistoryService.getCities();
 
-    // Return the search history
-    res.status(200).json({
-      message: 'Search history retrieved successfully.',
-      history,
-    });
-  } catch (error) {
-    console.error('Error fetching search history:', error);
-    res.status(500).json({ error: 'Failed to retrieve search history.' });
-  }
-});
+//     // Return the search history
+//     res.status(200).json({
+//       message: 'Search history retrieved successfully.',
+//       history,
+//     });
+//   } catch (error) {
+//     console.error('Error fetching search history:', error);
+//     res.status(500).json({ error: 'Failed to retrieve search history.' });
+//   }
+// });
 
 // DELETE: Remove a city from search history
-router.delete('/history', async (req: Request, res: Response) => {
-  const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
+// router.delete('/history', async (req: Request, res: Response) => {
+//   const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
 
-  if (!id) {
-    return res.status(400).json({ error: 'City ID is required.' });
-  }
+//   if (!id) {
+//     return res.status(400).json({ error: 'City ID is required.' });
+//   }
 
-  try {
-    // Delete city from search history using HistoryService
-    const deletionResult = await HistoryService.removeCity(parseInt(id as string, 10));
+//   try {
+//     // Delete city from search history using HistoryService
+//     const deletionResult = await HistoryService.removeCity(parseInt(id as string, 10));
 
-    if (deletionResult !== undefined) {
-      return res.status(200).json({ message: 'City deleted from search history.' });
-    } else {
-      return res.status(404).json({ error: 'City not found in search history.' });
-    }
-  } catch (error) {
-    console.error('Error deleting city from search history:', error);
-    return res.status(500).json({ error: 'Failed to delete city from search history.' });
-  }
-});
+//     if (deletionResult !== undefined) {
+//       return res.status(200).json({ message: 'City deleted from search history.' });
+//     } else {
+//       return res.status(404).json({ error: 'City not found in search history.' });
+//     }
+//   } catch (error) {
+//     console.error('Error deleting city from search history:', error);
+//     return res.status(500).json({ error: 'Failed to delete city from search history.' });
+//   }
+// });
 
 export default router;
 

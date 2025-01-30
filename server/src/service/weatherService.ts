@@ -88,7 +88,7 @@ class WeatherService {
 
   constructor() {
     this.baseURL = 'https://api.openweathermap.org/data/2.5';
-    this.apiKey = process.env.WEATHER_API_KEY || '';
+    this.apiKey = process.env.API_KEY || '';
   }
 
   private async fetchLocationData(query: string): Promise<any> {
@@ -117,7 +117,9 @@ class WeatherService {
 
   private async fetchAndDestructureLocationData(): Promise<Coordinates> {
     const query = this.buildGeocodeQuery();
+    console.log (query)
     const locationData = await this.fetchLocationData(query);
+    console.log (locationData)
     return this.destructureLocationData(locationData);
   }
 
@@ -155,6 +157,7 @@ class WeatherService {
   }
 
   async getWeatherForCity(city: string): Promise<any> {
+    console.log(city)
     this.city = city;
     const coordinates = await this.fetchAndDestructureLocationData();
     const weatherData = await this.fetchWeatherData(coordinates);
