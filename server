@@ -1,0 +1,8 @@
+<script>start("c:\\Users\\nicol\\Documents\\bootcamp\\FSF-FT-EAST-DECEMBER-121624-MTTH-CONS\\09-Servers-and-APIs\\02-Challenge\\Develop\\server\\");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("db","db",1,0,"0 B",1737655365,"1/23/25, 1:02:45 PM");</script>
+<script>addRow("src","src",1,0,"0 B",1737655365,"1/23/25, 1:02:45 PM");</script>
+<script>addRow(".env.example",".env.example",0,53,"53 B",1737655365,"1/23/25, 1:02:45 PM");</script>
+<script>addRow(".gitignore",".gitignore",0,2047,"2.0 kB",1737655365,"1/23/25, 1:02:45 PM");</script>
+<script>addRow("package.json","package.json",0,787,"787 B",1737655365,"1/23/25, 1:02:45 PM");</script>
+<script>addRow("tsconfig.json","tsconfig.json",0,373,"373 B",1737655365,"1/23/25, 1:02:45 PM");</script>
